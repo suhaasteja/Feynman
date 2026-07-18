@@ -767,7 +767,7 @@ export default function App() {
 
   return (
     <main className="app">
-      <h1>Interactive Audiobook</h1>
+      <h1>Feynman - Interactive Audiobook</h1>
 
       <section className="ingest">
         <textarea
