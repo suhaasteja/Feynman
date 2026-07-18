@@ -5,12 +5,20 @@ Source of truth for scope/stages is `interactive-audiobook-mvp-plan.md`.
 
 ## Requested next (2026-07-18)
 
-### Deepen Respan usage (sponsor story)
-Today Respan is only the ingestion cleaning call (`convex/ingest.ts`). The
-intended showcase is **Stage 5**: run a groundedness LLM-as-judge over each
-`qaTurn` through Respan and surface scores in the Respan dashboard. Also
-consider deleting the dead `realtime.answerQuestion` text path (unused since
-voice-only) or, if kept, routing it through Respan for unified observability.
+### Deepen Respan usage (sponsor story) — ✅ Stage 5 DONE (2026-07-18)
+**Shipped:** async groundedness judge. `qa.logTurn` schedules `qa.judgeTurn`
+(off critical path); it pulls the answer + the current/previous paragraph the
+assistant was grounded on, sends it through **Respan** (`chat/completions`,
+`openai/gpt-4o-mini`, BYOK credential_override), and writes a 0–1
+`groundednessScore` back via `setGroundednessScore`. UI already renders it (live
+via the reactive `listBySession`); the eval also lands in the Respan dashboard.
+Now Respan is used in two places: ingestion cleaning + Stage 5 judge.
+
+**Still open:** delete the dead `realtime.answerQuestion` text path (unused since
+voice-only) and the now-unused sentence-level TTS functions
+(`prefetchAhead`, `getPlaybackSegments`, `storeSegmentAudioId`,
+`fetchSegmentsForPrefetch`). Tune the judge prompt / add a reason column if
+useful for the demo.
 
 ### Small slide deck (demo/pitch)
 Short deck: problem → demo flow (paste → narrate → hold-Q → grounded answer →
