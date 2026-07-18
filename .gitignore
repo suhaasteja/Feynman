@@ -1,0 +1,29 @@
+node_modules
+dist
+dist-ssr
+*.local
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Editor / OS
+.DS_Store
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Convex
+.convex
+
+# Build artifacts
+*.tsbuildinfo
+
+# Local Claude Code settings
+.claude/settings.local.json
+
+# Vendored agent skills (reinstall via `npx convex ai-files install`; tracked by skills-lock.json)
+.claude/skills/
+.agents/skills/

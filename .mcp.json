@@ -1,0 +1,22 @@
+{
+  "mcpServers": {
+    "convex": {
+      "command": "npx",
+      "args": ["-y", "convex@latest", "mcp", "start", "--project-dir", "/Users/mac/Desktop/interactive_audiobook"]
+    },
+    "respan": {
+      "type": "http",
+      "url": "https://mcp.respan.ai/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${RESPAN_API_KEY}"
+      }
+    },
+    "elevenlabs": {
+      "command": "uvx",
+      "args": ["elevenlabs-mcp"],
+      "env": {
+        "ELEVENLABS_API_KEY": "${ELEVENLABS_API_KEY}"
+      }
+    }
+  }
+}
