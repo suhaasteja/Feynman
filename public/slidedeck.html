@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feynman — pitch</title>
+<style>
+  :root{
+    --bg:#faf6ef; --surface:#fffdf8; --ink:#2b2620; --muted:#8a8175;
+    --border:#e8ddcb; --accent:#bf6a1f; --accent-strong:#a15716; --accent-soft:#f6e9d6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,ui-serif,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    background:var(--bg);color:var(--ink);font-family:var(--sans);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .deck{width:min(920px,92vw);height:min(620px,88vh);position:relative}
+  .slide{
+    position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:3.2rem 3.4rem;background:var(--surface);border:1px solid var(--border);
+    border-radius:18px;box-shadow:0 8px 30px rgba(150,90,20,.08);
+  }
+  .slide.active{display:flex;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  .kicker{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-strong);font-weight:700;margin-bottom:1rem}
+  h1{font-family:var(--serif);font-size:3.3rem;line-height:1.05;letter-spacing:-.02em;margin:0}
+  h1 .dot{color:var(--accent)}
+  h2{font-family:var(--serif);font-size:2.1rem;line-height:1.15;margin:0 0 1.1rem}
+  .lead{font-size:1.25rem;line-height:1.5;color:var(--ink);max-width:44ch}
+  .sub{font-size:1.05rem;color:var(--muted);margin-top:1.2rem}
+  ul{margin:.4rem 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:.7rem}
+  li{font-size:1.12rem;line-height:1.45;padding-left:1.6rem;position:relative}
+  li::before{content:"";position:absolute;left:0;top:.55em;width:.55rem;height:.55rem;border-radius:50%;background:var(--accent)}
+  li b{color:var(--accent-strong)}
+  .flow{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem}
+  .step{background:var(--accent-soft);color:var(--accent-strong);font-weight:600;
+    padding:.5rem .8rem;border-radius:999px;font-size:.98rem}
+  .arrow{color:var(--muted);align-self:center;font-size:1.1rem}
+  .stack{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:.3rem}
+  .card{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem}
+  .card h3{margin:0 0 .25rem;font-family:var(--sans);font-size:1rem;color:var(--accent-strong)}
+  .card p{margin:0;font-size:.92rem;color:var(--muted);line-height:1.4}
+  .quote{font-family:var(--serif);font-size:1.5rem;line-height:1.4;border-left:3px solid var(--accent);padding-left:1.2rem;color:var(--ink)}
+  footer{position:fixed;bottom:1.1rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:1rem}
+  .dots{display:flex;gap:.4rem}
+  .dots button{width:.55rem;height:.55rem;border-radius:50%;border:none;background:var(--border);cursor:pointer;padding:0}
+  .dots button.on{background:var(--accent)}
+  .nav{background:none;border:1px solid var(--border);color:var(--muted);border-radius:8px;
+    width:2rem;height:2rem;cursor:pointer;font-size:1rem}
+  .nav:hover{border-color:var(--accent);color:var(--accent)}
+  .tag{position:fixed;top:1.1rem;left:1.4rem;font-family:var(--serif);font-weight:600;color:var(--muted)}
+  .num{position:fixed;top:1.1rem;right:1.4rem;font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="tag">Feynman<span style="color:var(--accent)">.</span></div>
+<div class="num"><span id="cur">1</span> / <span id="tot">8</span></div>
+
+<div class="deck" id="deck">
+  <section class="slide active">
+    <div class="kicker">Voice Coding Hackathon · Convex · Respan</div>
+    <h1>Feynman<span class="dot">.</span></h1>
+    <p class="lead">An interactive audiobook you can <b>interrupt with your voice</b> to ask questions — and get answers grounded in what you're reading.</p>
+    <p class="sub">Learn anything the Feynman way: don't sit through it — stop and ask.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">The problem</div>
+    <h2>Listening is passive.</h2>
+    <p class="lead">You hit a sentence you don't understand — a term, a claim, a leap in logic — and there's nothing you can do but rewind, or open six tabs and lose the thread entirely.</p>
+    <p class="sub">Real understanding comes from asking questions the moment they appear.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">The idea</div>
+    <p class="quote">"If you can't interrupt and ask, you're not learning — you're just being read to."</p>
+    <p class="sub">Feynman narrates any article to you. Hold a key, ask out loud, hear a grounded answer in the flow — then narration picks up right where it left off.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">The experience</div>
+    <h2>Paste → listen → interrupt → learn</h2>
+    <div class="flow">
+      <span class="step">Paste an article</span><span class="arrow">→</span>
+      <span class="step">It narrates</span><span class="arrow">→</span>
+      <span class="step">Hold&nbsp;Q, ask aloud</span><span class="arrow">→</span>
+      <span class="step">Grounded answer</span><span class="arrow">→</span>
+      <span class="step">Resumes</span>
+    </div>
+    <ul style="margin-top:1.6rem">
+      <li>Push-to-talk barge-in — the mic is live only while you hold the key</li>
+      <li>Full-duplex voice Q&amp;A, then a natural "back to the article" lead-in</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Under the hood</div>
+    <h2>The stack</h2>
+    <div class="stack">
+      <div class="card"><h3>Convex</h3><p>Reactive state, file storage, and a position-aware audio prefetch queue — no server to babysit.</p></div>
+      <div class="card"><h3>OpenAI Realtime</h3><p>Full-duplex spoken Q&amp;A over WebRTC with ephemeral tokens; push-to-talk turns.</p></div>
+      <div class="card"><h3>ElevenLabs</h3><p>Narration TTS, generated a paragraph at a time for natural prosody.</p></div>
+      <div class="card"><h3>Respan</h3><p>LLM gateway for text-cleaning + the groundedness evals — with a dashboard.</p></div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Trust, not vibes</div>
+    <h2>Grounded — and measured.</h2>
+    <ul>
+      <li>Answers are restricted to the <b>article's own paragraphs</b>. No outside facts, no hallucinated tangents.</li>
+      <li>Every answer is scored by a <b>Respan LLM-as-judge</b> for groundedness — asynchronously, off the critical path.</li>
+      <li>Scores land on each turn <b>and in the Respan dashboard</b> — so "is it faithful?" is a number, not a hope.</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">Why it works</div>
+    <h2>The loop is the point</h2>
+    <p class="lead">Interruption is a first-class action, not an afterthought. Barge-in cancels cleanly, grounding is re-injected on every question, and narration resumes at the paragraph you left — so curiosity never costs you your place.</p>
+    <p class="sub">Ephemeral while live, grounded on every turn, gapless on return.</p>
+  </section>
+
+  <section class="slide">
+    <div class="kicker">What's next</div>
+    <h2>From demo to daily driver</h2>
+    <ul>
+      <li>Gapless Web-Audio scheduling &amp; sentence highlight-sync</li>
+      <li>Durable Q&amp;A memory that survives reconnects and sessions</li>
+      <li>Bring your own source: PDFs, papers, docs</li>
+    </ul>
+    <p class="sub">Feynman<span style="color:var(--accent)">.</span> — stop reading at people. Let them ask.</p>
+  </section>
+</div>
+
+<footer>
+  <button class="nav" id="prev" aria-label="Previous">‹</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav" id="next" aria-label="Next">›</button>
+</footer>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const dotsWrap=document.getElementById('dots');
+  const cur=document.getElementById('cur');
+  document.getElementById('tot').textContent=slides.length;
+  let i=0;
+  slides.forEach((_,n)=>{const b=document.createElement('button');b.onclick=()=>go(n);dotsWrap.appendChild(b);});
+  const dots=[...dotsWrap.children];
+  function go(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,n)=>s.classList.toggle('active',n===i));
+    dots.forEach((d,n)=>d.classList.toggle('on',n===i));
+    cur.textContent=i+1;
+  }
+  document.getElementById('next').onclick=()=>go(i+1);
+  document.getElementById('prev').onclick=()=>go(i-1);
+  addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown')go(i+1);
+    if(e.key==='ArrowLeft'||e.key==='PageUp')go(i-1);
+  });
+  go(0);
+</script>
+</body>
+</html>
