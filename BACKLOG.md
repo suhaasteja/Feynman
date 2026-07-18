@@ -3,6 +3,24 @@
 Deferred work and enhancement ideas, so nothing gets lost between sessions.
 Source of truth for scope/stages is `interactive-audiobook-mvp-plan.md`.
 
+## Requested next (2026-07-18)
+
+### Deepen Respan usage (sponsor story)
+Today Respan is only the ingestion cleaning call (`convex/ingest.ts`). The
+intended showcase is **Stage 5**: run a groundedness LLM-as-judge over each
+`qaTurn` through Respan and surface scores in the Respan dashboard. Also
+consider deleting the dead `realtime.answerQuestion` text path (unused since
+voice-only) or, if kept, routing it through Respan for unified observability.
+
+### Small slide deck (demo/pitch)
+Short deck: problem → demo flow (paste → narrate → hold-Q → grounded answer →
+resume) → architecture (Convex / Respan / ElevenLabs / OpenAI Realtime) →
+sponsor fit → what's next. Decide format (Markdown/Marp vs. slides tool).
+
+### UI overhaul — simple, minimalistic
+Current UI is a bare functional layout (`src/index.css` + `src/App.tsx`). Want a
+clean, minimal restyle. Decide: light/dark, accent color, typography.
+
 ## New ideas (2026-07-18)
 
 ### TTS: paragraph-level chunking for better prosody — ✅ DONE (2026-07-18)
